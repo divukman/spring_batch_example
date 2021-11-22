@@ -17,9 +17,7 @@ public class JobCreator {
     private final JobCompletionNotificationListener listener;
     private final Step step1;
 
-    public Job createCustomJob(String customJobArg) {
-        log.info("Creating job: " + customJobArg);
-
+    public Job createCustomJob() {
         return jobBuilderFactory.get("importUserJob")
                 .incrementer(new RunIdIncrementer())
                 .listener(listener)

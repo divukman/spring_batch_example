@@ -26,7 +26,7 @@ public class JobController {
         log.info("Launching new job...");
         try {
             final String arg = UUID.randomUUID().toString();
-            Job job = jobCreator.createCustomJob(arg);
+            Job job = jobCreator.createCustomJob();
             JobParameters jobParameters = new JobParametersBuilder()
                     .addLong("time", new Date().getTime())
                     .addString("arg", arg)

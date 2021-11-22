@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import tech.dimitar.spring.batch.jobs.JobCreator;
 
 import java.util.Date;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,9 +25,12 @@ public class JobController {
     public String handle() {
         log.info("Launching new job...");
         try {
-            final String arg = "custom job arg";
+            final String arg = UUID.randomUUID().toString();
             Job job = jobCreator.createCustomJob(arg);
-            JobParameters jobParameters = new JobParametersBuilder().addLong("time", new Date().getTime()).toJobParameters();
+            JobParameters jobParameters = new JobParametersBuilder()
+                    .addLong("time", new Date().getTime())
+                    .addString("arg", arg)
+                    .toJobParameters();
             jobLauncher.run(job, jobParameters);
         } catch (Exception e) {
             log.info("Failed to launch a job: " + e.getMessage());

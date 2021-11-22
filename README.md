@@ -1,1 +1,4 @@
-# spring_batch_example
+# Spring Batch Example
+
+- Spring Batch
+- Launch a job via rest call
